@@ -1,0 +1,57 @@
+----------------NEXT JS power----------------
+- simpiflies the development process
+
+- optimizes your web apps
+
+- primary features:
+> rendering
+  o flexibility in rendering, you can choose rendering on client or server side
+  o client side rendering or browser rendering happend on clients device, server send html, and js code to client's browser and then the browser rendered the html and javascript file.
+  o server side rendering happend on server, so html and js code rendered on server and after that the result will send to client's browser
+> SEO (Search Engine Optimization)
+  o SEO is crucial for optimizing a website's visibility and ranking in search engine result
+  o benefit:
+    > increased organic traffic
+    > enhanced user experience
+    > credibility and trustworhiness
+    > competitice advantage
+> Routing
+  o uses file-based routing system
+  o the routing handled by file system
+  o each file in directory becomes a route
+  o the folder name becomse a route path
+> Fullstack
+  o enabling the creation of the serverless function of serverless functions to handle API request
+  o serverless APIs in nextJS are a way of creating API endpoints without the need for a traditional server
+  o it allows us to build and deploy APIs without managing server infrastucture and worrying about scaling their server as traffic increases
+  o we can create API enpoint with route.js file in spesific folder within the app directory
+> code splitting
+  o  a technique that breaks down large bundle of javascript code into smaller, more manageable chunks that can be loaded as needed
+  o this will be optimize the user's experience while browsing and reduces the initial load time of the website
+> build on top of ReactJS
+
+
+--------------------File Forder and Stucture-------------
+- Page
+> A page is like index.js in a folder or subfolder.
+> A page is always the leaf of the route subtree
+> A page required to make a route segment accessible
+> pages are server component by default but can be set to a client component
+> page can fetch data
+
+- Layout
+> A layout is UI that is shared between multiple pages.
+> The top-most layout is called the root layout. this required layout is shared accross all pages in an application. root layout must contain html and body tags.
+> any route segment can optionally define its own layout. these layouts will be shared across all pages in the segment
+> layout in route are nested by default. each parent layout wraps child layouts below it using react childdren prop
+> you can use route groups to opt spesific route segments in and out of shared layout
+> layout are server component by default but can be set to a client component
+> layout can fetch data
+> passing data between a parent layout and its children is not possible.
+> Layout do not have access to the current tour segments
+> a layout and page file can be defined in the same folder
+
+- Root layout
+> the root layout is defined at the top level of the app directory and applies to all routes
+> this layout enables you to modify the initial html returned from the server
+
