@@ -54,4 +54,79 @@
 - Root layout
 > the root layout is defined at the top level of the app directory and applies to all routes
 > this layout enables you to modify the initial html returned from the server
+> the app directory must include a root layout
+> the root layout must define <html> and <body> tags since nextjs does not automatically create them
+> you can use the built in SEO support to mange <head> HMTL elements, fir example, the <title> elements
+> you can use route groups to create multiple root layout 
+> the root layout is a server component by default and can not be set to a client component
+
+- nesting layout
+> layout defined inside a folder (e.g. app/dashboard/layout.js) apply to spesific route segmen (e.g. acme.com/dashboard) and render when those segments are active
+> by default, layouts in the file hierarchy are nested, which means they wrap child layouts via their childen prop
+
+
+--------------------Server and Client component-------------
+- by default all component in nextjs rendered on server side
+
+- to turn a compenent redered on client side, type "use client" in the first row of page.js component
+
+- if using react hooks, should render on client side
+
+- when to use server component:
+> fetch data
+> access backend resources
+> keep sensitive information on the server
+> keep large dependencies on the server
+
+- when to use client component:
+> add interactivity and event listeners (onClick, onChange)
+> React Hooks (useState, useEffect)
+> use browser-only API
+> custom hooks
+> React class component
+
+
+--------------------Routing NextJS-------------
+- Defining Routes
+> inside the app directory, folders are used to define routes
+> each folder represent a route segment that maps to a url segment. to nested route, you can nest folder inside each other
+> a special page.js file is used to make route segments publicy accessible
+
+- Dynamic Routes
+> a dynamic route can be created by wrapping a folder name in a square brackets: [folderName]
+> dynamic segments are passed as the params prop to layout, page, route, and generateMetadata function
+> Dynamic segments can be extended to catch all subsequent segments by adding an ellipsis inside the brackets [...folderName]
+> catch all segment can be made optional by including the parameter in double square brackets: [[...folderName]]
+> the difference between catch all and optional catch all segment is that with optional, the route without the parameter is also mathced
+> ex: i delete page.js inside posts folder, and the slug set to optional catch all segent, i still possible to acces localhost:3000/posts
+  because next js call page.js inside the slug  optional catch folder
+> but if the slug set to non optional, that will be error because post folder hasn't page.js
+> example optional catch all segments : shots folder
+> example catch all segments : posts folder
+
+- Loading UI and Streaming
+> the special file loading.js helps to create meaningful loading UI with ReactSuspense
+> you can show an instant loading state from the server while the content of a route segment loads, the new content is automatically swapped in once rendering is complete
+
+- error handling
+> the error.js file convention allows you to gracefully handle runtime error in nested routes
+> create error UI by adding an error.js file inside route segment
+> an error component can use the reset() function to propmt the user to attempt to recover from the error
+> when reset() executed, the function will try to re-render the error boundary's contents
+> if successful, the fallback error component is replaced with the result of the re-render
+> error.js bounderies do not catch error thrown in layout.js or template.js components of the same segment
+> this intentional hierarchy keeps important UI that is shared between sibling routes (such as navigation) visible and functional when an error occurs
+> to handle errors within a spesific layout or template, place an error.js file in the layouts parent segment
+> to handle errors within the root layout or template, use a variation of error.js called global-error.js
+> global-error.js located in the roor app directory
+> unlike the roor error.js, the global-error.js error boundary wraps the enitre application, ad its fallback component replaces the roor layout when active
+> global-error.js must define its own <html> and <body> tag
+> Even if a global-error.js is defined, it is still recommended to define a root error.js whose fallback component will be rendered within the root layout, which includes globally shared UI and branding.
+
+
+--------------------Data Fetching-------------
+
+- Server side rendering (SSR)
+- Static site generation (SSG)
+- Incremental Static Generation (ISR)
 
